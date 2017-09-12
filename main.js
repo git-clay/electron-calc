@@ -6,7 +6,7 @@ const BrowserWindow = electron.BrowserWindow
 
 const path = require('path')
 const url = require('url')
-
+var ipc = require('electron').ipcMain;
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
@@ -23,7 +23,7 @@ function createWindow () {
   }))
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+   mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -55,6 +55,41 @@ app.on('activate', function () {
     createWindow()
   }
 })
+
+let num1=null,num2=null;
+let operator = "+";
+let equation = {
+  '+': function(x,y){return x+y},
+  '-': function(x,y){return x-y},
+  '*': function(x,y){return x*y},
+  '/': function(x,y){return x/y}
+};
+
+ipc.on('asynchronous-message', function (event, arg) {
+  let val = Object.values(arg)[0]
+  console.log(num1,num2,operator,val)
+  switch(Object.keys(arg)[0]){
+    case "submit":
+      event.sender.send('asynchronous-reply', equation[operator](num1,num2));
+      num1=null,num2=null,operator="+";
+      break;
+    case "op":
+      operator = val
+      break;
+    case "num":
+      if(num1 == null){
+        num1 = val
+      }else{
+        num2 = val
+      }
+      break;
+  }
+  //event.returnValue = 'pong'
+  //console.log(message)
+})
+
+
+
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.

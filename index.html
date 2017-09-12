@@ -2,18 +2,49 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Positron</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="tacos.css">
   </head>
   <body>
-    <h1>Hello World!</h1>
+    <h1>Positron!</h1>
     <!-- All of the Node.js APIs are available in this renderer process. -->
     We are using Node.js <script>document.write(process.versions.node)</script>,
     Chromium <script>document.write(process.versions.chrome)</script>,
     and Electron <script>document.write(process.versions.electron)</script>.
+    <section class="col-xs-10 col-xs-offset-1">
+      <button id="1" class="col-xs-4">1</button>
+      <button id="2" class="col-xs-4">2</button>
+      <button id="3" class="col-xs-4">3</button>
+      <button id="4" class="col-xs-4">4</button>
+      <button id="5" class="col-xs-4">5</button>
+      <button id="6" class="col-xs-4">6</button>
+      <button id="7" class="col-xs-4">7</button>
+      <button id="8" class="col-xs-4">8</button>
+      <button id="9" class="col-xs-4">9</button>
+      <button id="0" class="col-xs-4 col-xs-offset-4">0</button>
+    </section>
+
+    <section class="col-xs-10 col-xs-offset-1">
+      <button id="+" class="col-xs-4">+</button>
+      <button id="-" class="col-xs-4">-</button>
+      <button id="*" class="col-xs-4">*</button>
+      <button id="/" class="col-xs-4">/</button>
+    </section class="col-xs-10 col-xs-offset-1">
+    <section>
+      <button id="submit" class="col-xs-4">submit</button>
+    </section>
+
+    <section class="col-xs-10 col-xs-offset-1">
+      <div id="output" class="col-xs-4 col-xs-offset-4">
+      </div>
+    </section>
   </body>
 
   <script>
     // You can also require other files to run in this process
-    require('./renderer.js')
-  </script>
+        require('./renderer.js')
+</script>
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+
 </html>
